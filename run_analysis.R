@@ -1,5 +1,11 @@
 library(dplyr)
 
+# Download and unzip the data if it's not already there
+if (!file.exists('./UCI HAR Dataset')) {
+  download.file('https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip', './UCI HAR Dataset.zip')
+  unzip('./UCI HAR Dataset.zip')
+}
+
 # Load the test and training sets into memory
 test <- read.table('UCI HAR Dataset//test//X_test.txt', header=F, sep="", stringsAsFactors=F)
 train <- read.table('UCI HAR Dataset//train//X_train.txt',  header=F, sep="", stringsAsFactors=F)
