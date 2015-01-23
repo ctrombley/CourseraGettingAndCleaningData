@@ -17,16 +17,26 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
 
 The following steps are then taken to tidy the results:
 
-1. Load the test and training sets into memory
-2. Load in the feature and activity labels
-3. Merge the test and training sets into one set
-4. Tidy the feature labels and apply them to the columns
-5. Isolate the factors containing stdev and mean measurements in their own set
-6. Load in the test & training subject observations and merge them into a single set
-7. Load in the test & training activity observations and merge them into a single set
-8. Add subject and activity observations as new columns to the data and label them
-9. Replace activity IDs with their corresponding labels
-10. Calculate the mean value for each measurement
+1. Load the test and training sets into memory.
+  * The original UCI HAR dataset is split into distinct training and test sets to facilitate machine learning.  Here they are both loaded into memory.
+2. Load in the feature and activity labels.
+  * The feature column names and human readable activity mappings are both stored in separate files.  Here they are both loaded into memory.
+3. Merge the test and training sets into one set.
+  * For the purposes of this project, we should consider the dataset as a whole, so the test and training sets are concatenated.
+4. Tidy the feature labels and apply them to the columns.
+  * The feature labels are tidied using a methodology described below in the **Features** section.
+5. Isolate the factors containing stdev and mean measurements in their own set.
+  * The project requirements call for filtering of the original set of 561 features down to a subset that represents only mean and standard deviation features.  This was accomplished by matching the original feature set for either a  "std" or "mean" token.
+6. Load in the test & training subject observations and merge them into a single set.
+  * The subject ID observations are stored in separate files from the feature observations, and are similarly partitioned into test and train sets that correspond to the larger test and train data sets.  Here they are both loaded into memory and concatenated in a similar fashion to the larger observation sets.
+7. Load in the test & training activity observations and merge them into a single set.
+  * A similar approach is taken to load in the activity observations.
+8. Add subject and activity observations as new columns to the data and label them.
+  * Here the subject and activity observations that are now in memory are added as columns to our tidy data set.
+9. Replace activity IDs with their corresponding labels.
+  * The activity IDs are replaced with human readable labels for readability.
+10. Calculate the mean value for each measurement.
+  * The mean is calculated across all the observations for each feature.  Our resulting dataset represents a summarized form of the data, with a single set of mean feature observations for each subject/activity pair.
 
 The resulting subset consists of 180 observations (6 activities * 30 subjects) across 79 distinct features.
 
