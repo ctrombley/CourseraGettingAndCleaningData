@@ -28,7 +28,7 @@ source("run_analysis.R")
 After a successful run, the resulting tidy data set is loaded into the global environment as `tidy_data` and saved to disk as `tidy_data.txt`. Once the text file has been created, the tidy data set can be loaded back into memory at any time using the following command:
 
 ```R
-tidy_data <- read.table("tidy_data.txt")
+tidy_data <- read.table("tidy_data.txt", header = T)
 ```
 
 ## Codebook
