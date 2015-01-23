@@ -33,4 +33,4 @@ tidy_data <- read.table("tidy_data.txt", header = T)
 
 ## Codebook
 
-The [codebook](CodeBook.md) available in this repo describes the steps taken by the script in transforming and cleaning the data, and the resulting variables and observations.
+The [codebook](Codebook.md) available in this repo describes the steps taken by the script in transforming and cleaning the data, and the resulting variables and observations.
