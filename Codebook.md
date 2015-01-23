@@ -9,9 +9,26 @@ The `run_analysis.R` script creates a tidy version of the University of Californ
 
 The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force was assumed to have only low frequency components, so a filter with a 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain.
 
-This script first generates a combined subset of the original data by appending the training data set to the test data set, and then extracting only the features that contain mean and standard deviation metrics, for a total of 79 features out of the 561 original features. This combined subset is loaded into the global environment during analysis as `std_mean_data`, and contains 10299 observations of 79 variables.  The pertinent Subject ID and Activity have also been appended as columns. 
+## Implementation
 
-The combined subset is further reduced by calculating the mean of the observations by activity and subject pair to generate 180 observations (6 activities * 30 subjects) of the same 79 features. 
+This script first downloads and unzips the data from the following URL:
+
+https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+
+The following steps are then taken to tidy the results:
+
+1. Load the test and training sets into memory
+2. Load in the feature and activity labels
+3. Merge the test and training sets into one set
+4. Tidy the feature labels and apply them to the columns
+5. Isolate the factors containing stdev and mean measurements in their own set
+6. Load in the test & training subject observations and merge them into a single set
+7. Load in the test & training activity observations and merge them into a single set
+8. Add subject and activity observations as new columns to the data and label them
+9. Replace activity IDs with their corresponding labels
+10. Calculate the mean value for each measurement
+
+The resulting subset consists of 180 observations (6 activities * 30 subjects) across 79 distinct features.
 
 ## Description of the UCI HAR variables
 
