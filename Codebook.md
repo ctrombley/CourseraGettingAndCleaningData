@@ -64,7 +64,7 @@ The activity name, with one of the following possible values:
 
 ### Features
 
-The measurements for which the mean is calculated. These make up the 79 columns following the subject and activity.  The feature names have been cleaned to fit a standard naming convention, where each identifier is separated by a single period.  From these names, the measurement domain can be easily ascertained ("t" for time, "f" for frequency) as well as the subject ("body", "gravity"), the sensor ("acc" for accelerometer, "gyro" for gyroscope), the original metric observed ("mean" for mean, "std" for standard deviation), the axis ("x", "y", "z"), as well as any higher-order calculations used ("jerk", "mag" for magnitude).  Please refer the codebook with the original dataset for a more detailed explanation of each individual feature.  The complete list of resultant features is as follows:
+The measurements for which the mean is calculated. These make up the 79 columns following the subject and activity.  The feature names have been cleaned to fit a standard naming convention, where each identifier is separated by a single period.  From these names, the measurement domain can be easily ascertained ("t" for time, "f" for frequency) as well as the subject ("body", "gravity"), the sensor ("acc" for accelerometer, "gyro" for gyroscope), the original metric observed ("mean" for mean, "std" for standard deviation), the axis ("x", "y", "z"), as well as any higher-order calculations used ("jerk", "mag" for magnitude).  Please refer the codebook with the original dataset for a more detailed explanation of each individual feature.  The complete list of features is as follows:
 
 - t.body.acc.mean.x
 - t.body.acc.mean.y
