@@ -3,32 +3,15 @@ Codebook for Tidy UCI HAR Dataset
 
 ## Description
 
-This codebook describes the tidy data set produced by the `run_analysis.R` script.  After a successful run, the data is loaded into memory as a dplyr table (`tidy_data`) as well as written to `tidy_data.txt`.
+This code book describes the tidy data set produced by the `run_analysis.R` script. After a successful run, the data is loaded into memory as a dplyr table (`tidy_data`) as well as written to `tidy_data.txt`.
 
-The `run_analysis.R` script creates a tidy version of the University of California Irvine's (UCI's) dataset for Human Activity Recognition (HAR) using smartphones. The original UCI HAR Dataset is a public domain dataset built from the recordings of subjects performing activities of daily living (ADL) while carrying a waist-mounted smartphone with embedded inertial sensor (see http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones). Experiments were carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (walking, walking upstairs, walking downstairs, sitting, standing, and laying) wearing a Samsung Galaxy S II smartphone on the waist. Using its embedded accelerometer and gyroscope, 3-axial linear acceleration and 3-axial angular velocity were captured at a constant rate of 50Hz. The experiments were video-recorded to label the data manually.
+The `run_analysis.R` script creates a tidy version of the University of California Irvine's (UCI's) dataset for Human Activity Recognition (HAR) using smartphones. The original UCI HAR Dataset is a public domain dataset built from the recordings of subjects performing activities of daily living (ADL) while carrying a waist-mounted smartphone with embedded inertial sensor (see http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones). Experimentswere carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (walking, walking upstairs, walking downstairs, sitting, standing, and laying) wearing a Samsung Galaxy S II smartphone on the waist. Using its embedded accelerometer and gyroscope, 3-axial linear acceleration and 3-axial angular velocity were captured at a constant rate of 50Hz. The experiments were video-recorded to label the data manually.
 
 The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force was assumed to have only low frequency components, so a filter with a 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain.
 
-## Implementation
+This script first generates a combined subset of the original data by appending the training data set to the test data set, and then extracting only the features that contain mean and standard deviation metrics, for a total of 79 features out of the 561 original features. This combined subset is loaded into the global environment during analysis as `std_mean_data`, and contains 10299 observations of 79 variables.  The pertinent Subject ID and Activity have also been appended as columns. 
 
-This script first downloads and unzips the data from the following URL:
-
-https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
-
-The following steps are then taken to tidy the results:
-
-1. Load the test and training sets into memory
-2. Load in the feature and activity labels
-3. Merge the test and training sets into one set
-4. Tidy the feature labels and apply them to the columns
-5. Isolate the factors containing stdev and mean measurements in their own set
-6. Load in the test & training subject observations and merge them into a single set
-7. Load in the test & training activity observations and merge them into a single set
-8. Add subject and activity observations as new columns to the data and label them
-9. Replace activity IDs with their corresponding labels
-10. Calculate the mean value for each measurement
-
-The resulting subset is consists of 180 observations (6 activities * 30 subjects) across 79 distinct features. 
+The combined subset is further reduced by calculating the mean of the observations by activity and subject pair to generate 180 observations (6 activities * 30 subjects) of the same 79 features. 
 
 ## Description of the UCI HAR variables
 
@@ -54,7 +37,7 @@ The activity name, with one of the following possible values:
 
 ### Features
 
-The measurements for which the mean is calculated. These make up the 79 columns following the subject and activity.  Please refer the codebook with the original dataset for the explanation of each individual feature.
+The measurements for which the mean is calculated. These make up the 79 columns following the subject and activity.  The feature names have been cleaned to fit a standard naming convention, where each identifier is separated by a single period.  From these names, the measurement domain can be easily ascertained ("t" for time, "f" for frequency) as well as the subject ("body", "gravity"), the sensor ("acc" for accelerometer, "gyro" for gyroscope), the original metric observed ("mean" for mean, "std" for standard deviation), the axis ("x", "y", "z"), as well as any higher-order calculations used ("jerk", "mag" for magnitude).  Please refer the codebook with the original dataset for a more detailed explanation of each individual feature.  The complete list of resultant features is as follows:
 
 - t.body.acc.mean.x
 - t.body.acc.mean.y
